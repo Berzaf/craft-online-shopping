@@ -1,0 +1,158 @@
+#%RAML 1.0
+title: craftOnlineShopping
+
+uses:
+  lib: library.raml
+version: 1.0
+
+/products:
+  description: get all products
+  get:
+    queryParameters:
+      name:
+        type: string
+        description: the name of the product
+        maxLength: 10
+        required: false
+        example: Dell
+      id:
+        type: integer
+        description: the id of the product
+        required: false
+        example: 1524
+    headers:
+      connection-type:
+        description: multiple connection is allowe for tis rest api
+        type: array
+        required: false
+      session:
+        description: connection session is stored
+        type: string
+        required: false
+    responses:
+      200: 
+        body:
+          application/json:
+            type: lib.productTypes []
+            example:
+              !include Examples/products.raml
+    is:
+      - lib.collections
+          
+   
+  /{productId}:
+    
+    get:
+      description: get product by id
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.productTypes 
+              
+              example:
+                !include Examples/product.raml
+      is:
+        - lib.collections
+
+/orders:
+  description: get all orders
+  get: 
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.orderTypes []
+            example:
+              !include Examples/orders.raml
+    is:
+      - lib.collections
+  type:
+    lib.postResource:
+      exampleRefrence1:                 
+
+        {
+          "orderid": 2341,
+          "name": "Apple",
+          "date": "2-02-2021",
+          "amount": 1,
+          "userid": 2021,
+          "status": "ok",
+          "addressid": 67126500,
+      }
+          
+  
+  /{orderId}:
+    
+    get:
+      description: get orders by userid
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.orderTypes
+              example:
+                !include Examples/order.raml
+    is:
+      - lib.collections
+
+/categories:
+  description: search all categories
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.categoryTypes []
+            example:
+              !include Examples/categories.raml
+    is:
+      - lib.collections
+
+  /{categoryId}:
+    
+    get:
+      description: serch category
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.categoryTypes
+              example:
+                !include Examples/category.raml      
+    is:
+      - lib.collections
+/users:
+  description: get all users
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.userTypes []
+            example:
+              !include Examples/users.raml
+    is:
+      - lib.collections
+  type:
+    lib.postResource:
+      exampleRefrence1: 
+        {
+          "uid": 1234
+        }
+        
+  /{userId}:
+    description:  get user by id
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.userTypes
+              example:
+                !include Examples/user.raml
+      is:
+        - lib.collections
+
+
+

@@ -1,0 +1,29 @@
+#%RAML 1.0 Trait
+
+ responses:
+      401:
+        description: unknown person
+        body:
+          application/json:
+            example:
+              {
+                message: "you dont have the previlage"
+              }
+              
+      404:
+        body:
+          application/json:
+            example:
+              { "message": "resourse not found"}
+      500:
+        body:
+          application/json:
+            example:
+              { "message": "server error"}
+          
+        
+ 
+          
+        
+ 
+  

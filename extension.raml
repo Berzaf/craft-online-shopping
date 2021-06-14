@@ -1,0 +1,56 @@
+#%RAML 1.0 Extension
+extends: craftonlineshopping.raml
+description: for admins
+/products:
+  get:
+       
+  post:
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              { "message": product upload successfully"}
+  put:
+  delete:
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              { "message": product deleted successfully}
+  
+/orders:
+    get:
+    post:
+    put:
+    delete:
+
+/users:
+    get:
+    post:
+    put:
+    delete:
+
+/category:
+    get:
+      responses:
+        404:
+          body:
+            application/json:
+              example:
+                {
+                  "msg": "category not found"
+                }
+    post:
+
+    put:
+    delete:
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                {
+                  "msg": "deleted"
+                }
