@@ -25,6 +25,13 @@ description: for admins
     post:
     put:
     delete:
+      responses:
+        201:
+          body:
+            application/json:
+              example:
+                { "message": order deleted successfully}  
+
 
 /users:
     get:
