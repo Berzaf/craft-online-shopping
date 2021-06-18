@@ -49,9 +49,17 @@ description: for admins
             application/json:
               example:
                 { "message": users upload successfully"}
-  put:
     put:
     delete:
+      responses:
+          200:
+            body:
+              application/json:
+                example:
+                  {
+                    "msg": "deleted"
+                  }
+    
 
 /category:
     get:
